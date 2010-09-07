@@ -7,6 +7,12 @@ body {
 	background-color: black;
 }
 
-div {
-		
+.chart {
+	width: 80%;
+	height: 300px;
+	padding: 10px;
+}
+
+.floatright {
+	float: right;
 }
