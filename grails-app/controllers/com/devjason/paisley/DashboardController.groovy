@@ -9,8 +9,7 @@ class DashboardController {
 
     def index = { }
 	
-	// Temp
-	def visitors = {
+	def monthly_commits = {
 		def map = [:]
 		// map.version = 0.5
 		map.reqId = '0'
@@ -39,7 +38,6 @@ class DashboardController {
 		
 		def table = [cols: columns, rows: rows]
 		map.table = table
-		println(map as JSON)
 		render "google.visualization.Query.setResponse(" + (map as JSON) + ")"
 	}
 }
