@@ -102,4 +102,37 @@ class DashboardController {
 		render "google.visualization.Query.setResponse(" + (map as JSON) + ")"
 	}
 	
+
+	def latest_commits = {
+		def db = new Sql(dataSource)
+			
+		// Query for active branches
+		def results = db.rows(
+			"select revision_number, revision_time, author, message " +
+			"from revision order by revision_time desc limit 0,10"
+		)
+		def columns = []
+		columns << [label: 'Number', type: 'number']
+		columns << [label: 'Time', type: 'datetime']
+		columns << [label: 'Author', type: 'string']
+		columns << [label: 'Message', type: 'string']
+		
+		def rows = []
+		def cells
+		results.each {
+			cells = []
+			cells << [v: it.revision_number] << [v: it.revision_time]
+			cells << [v: it.author] << [v: it.message]
+			rows << ['c': cells]
+		}
+		
+		def table = [cols: columns, rows: rows]
+		
+		// Setup Google Response object
+		def map = [:]
+		map.reqId = '2'
+		map.status = 'ok'
+		map.table = table
+		render "google.visualization.Query.setResponse(" + (map as JSON) + ")"
+	}	
 }

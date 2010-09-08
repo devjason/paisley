@@ -3,16 +3,53 @@ html * {
 }
 
 body {
-	color: yellow;
 	background-color: black;
 }
 
+h1 { color: yellow }
+
 .chart {
-	width: 80%;
+	width: 50%;
 	height: 300px;
 	padding: 10px;
+	margin: 5px;
+}
+
+.datatable {	
+	width: 45%;
+	float: right;
+	margin: 5px;
 }
 
 .floatright {
 	float: right;
 }
+
+.datatable table {
+	color: white;
+	background-color: black;
+	border-color: gray; 
+	border-width: 1px;
+	border-style: solid;
+}
+
+.dtHdr {
+	background-color: gray;
+	font-weight: bold;
+}
+
+.dtRow {
+}
+
+.dtSelectedRow {
+}
+
+.dtHoverRow {
+}
+
+.dtHdrCell {
+}
+
+.dtCell {
+}
+

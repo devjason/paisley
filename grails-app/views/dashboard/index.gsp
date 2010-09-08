@@ -4,7 +4,7 @@
 	<link type="text/css" rel="stylesheet" href="${resource(dir:'css',file:'dashboard.css')}" />
 	<script type="text/javascript" src="http://www.google.com/jsapi"></script>
 	<script type="text/javascript">
-		google.load('visualization', '1', {'packages':['corechart']});
+		google.load('visualization', '1', {'packages':['corechart','table']});
 		google.setOnLoadCallback(initialize);
 
 		function initialize() {
@@ -13,6 +13,9 @@
 
 			var query2 = new google.visualization.Query("${createLink(action:'monthly_commits_by_branch')}");
 			query2.send(drawBranchChart);
+
+			var query3 = new google.visualization.Query("${createLink(action:'latest_commits')}");
+			query3.send(drawCommitTable);
 		}
 		function drawBarChart(response) {			
 			var data = response.getDataTable();
@@ -43,10 +46,25 @@
 			};
 			chart.draw(data, chartOptions);
 		};
+		function drawCommitTable(response) {			
+			var data = response.getDataTable();
+			var chart = new google.visualization.Table(
+				document.getElementById('commit_table_div'));
+			var cssClassNames = {headerRow:'dtHdr', tableRow:'dtRow',
+					selectedTableRow:'dtSelectedRow', hoverTableRow:'dtHoverRow',
+					headerCell:'dtHdrCell', tableCell:'dtCell'};
+			var chartOptions = {
+					title:'Recent Commits',
+					alternatingRowStyle:false,
+					cssClassNames:cssClassNames,					
+			};
+			chart.draw(data, chartOptions);
+		};
 	</script>
 </head>
 <body>
 	<h1>FCE SVN Analytics</h1>
+	<div id="commit_table_div" class="datatable"></div>
 	<div id="chart_div" class="chart"></div>
 	<div id="branch_commits_div" class="chart"></div>
 </body>
