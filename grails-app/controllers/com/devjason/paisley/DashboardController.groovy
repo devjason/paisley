@@ -86,7 +86,7 @@ class DashboardController {
 		def cells
 		results.each {
 			cells = []
-			cells << [v: "${it.day}-${it.mth}-${it.yr}"]
+			cells << [v: "${it.mth}-${it.day}-${it.yr}"]
 			branches.each { b ->
 				if (b.equalsIgnoreCase(it.name)) {
 					cells << [v: it.cnt]

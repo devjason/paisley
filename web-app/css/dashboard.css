@@ -6,7 +6,14 @@ body {
 	background-color: black;
 }
 
-h1 { color: yellow }
+#header {
+	color: yellow;
+	background-color: #777777;
+	font-family: "Palatino", Times, serif;
+	font-size: 2.5em;
+	padding-left: 80px;
+	margin-bottom: 20px; 
+}
 
 .chart {
 	width: 50%;
@@ -45,6 +52,7 @@ h1 { color: yellow }
 }
 
 .dtHoverRow {
+	background-color: #333333;
 }
 
 .dtHdrCell {

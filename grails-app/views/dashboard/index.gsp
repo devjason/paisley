@@ -48,8 +48,6 @@
 		};
 		function drawCommitTable(response) {			
 			var data = response.getDataTable();
-			var chart = new google.visualization.Table(
-				document.getElementById('commit_table_div'));
 			var cssClassNames = {headerRow:'dtHdr', tableRow:'dtRow',
 					selectedTableRow:'dtSelectedRow', hoverTableRow:'dtHoverRow',
 					headerCell:'dtHdrCell', tableCell:'dtCell'};
@@ -58,12 +56,16 @@
 					alternatingRowStyle:false,
 					cssClassNames:cssClassNames,					
 			};
+			var short_date = new google.visualization.DateFormat({formatType:'short'});
+			short_date.format(data, 1);	// format revisiontime
+			var chart = new google.visualization.Table(
+					document.getElementById('commit_table_div'));
 			chart.draw(data, chartOptions);
 		};
 	</script>
 </head>
 <body>
-	<h1>FCE SVN Analytics</h1>
+	<div id="header">FCE SVN Analytics</div>
 	<div id="commit_table_div" class="datatable"></div>
 	<div id="chart_div" class="chart"></div>
 	<div id="branch_commits_div" class="chart"></div>
