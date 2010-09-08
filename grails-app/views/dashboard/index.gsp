@@ -56,7 +56,7 @@
 					alternatingRowStyle:false,
 					cssClassNames:cssClassNames,					
 			};
-			var short_date = new google.visualization.DateFormat({formatType:'short'});
+			var short_date = new google.visualization.DateFormat({pattern:'MM/dd/yy HH:mm'});
 			short_date.format(data, 1);	// format revisiontime
 			var chart = new google.visualization.Table(
 					document.getElementById('commit_table_div'));
@@ -65,7 +65,7 @@
 	</script>
 </head>
 <body>
-	<div id="header">FCE SVN Analytics</div>
+	<div id="header">FCE Subversion Analytics</div>
 	<div id="commit_table_div" class="datatable"></div>
 	<div id="chart_div" class="chart"></div>
 	<div id="branch_commits_div" class="chart"></div>
