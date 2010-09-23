@@ -25,6 +25,7 @@ class SvnLogUpdateJob {
 		def maxRevision = Revision.createCriteria().get {
 			projections { max('revisionNumber') }
 		} 
+		maxRevision = maxRevision ? maxRevision : 0
 		def currentRevision = getCurrentSvnRevision()
 		if (currentRevision <= maxRevision) {
 			println """current revision number from Paisley: $maxRevision

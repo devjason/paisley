@@ -1,7 +1,7 @@
 <html>
 <head>
 	<title>Paisley Analytics</title>
-	<link type="text/css" rel="stylesheet" href="${resource(dir:'css',file:'dashboard.css')}" />
+	<link type="text/css" rel="stylesheet" href="${resource(dir:'css',file:'dashboard.css')}" />	
 	<script type="text/javascript" src="http://www.google.com/jsapi"></script>
 	<script type="text/javascript">
 		google.load('visualization', '1', {'packages':['corechart','table']});
@@ -63,6 +63,10 @@
 			chart.draw(data, chartOptions);
 		};
 	</script>
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.5/jquery-ui.min.js"></script>
+	<script type="text/javascript" src="${resource(dir:'js',file:'dashboard.js')}"></script>
+	<link rel="stylesheet" type="text/css" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.5/themes/sunny/jquery-ui.css" />	
 </head>
 <body>
 	<div id="header">FCE Subversion Analytics</div>

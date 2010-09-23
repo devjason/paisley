@@ -68,3 +68,7 @@ body {
 .dtCell {
 }
 
+.jiraLink {
+	color : yellow;
+	font-weight: bold;
+}
