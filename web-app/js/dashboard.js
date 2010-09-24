@@ -75,12 +75,22 @@ DASHBOARD.addLink = function($element, svnMessage, prefix) {
 	}
 }
 
-jQuery(function() {
+$(function() {
+	//
+	// display JIRA links
 	setTimeout(DASHBOARD.fceJIRALinks, 500);
 	
-	/*
-	jQuery('tr.dtHoverRow').live('hover', function() {
-	}, function() {
+	//
+	// add "All Branches option and page load and select it
+	$('<option value="0">All Branches</option>').attr('selected', 'selected').prependTo('#branchname');
+	
+	//
+	// re-requery on each branch name change and re-display the commits table
+	$('#branchname').change(function() {
+		$branchoptions = $(this);
+		var branchId = $branchoptions.val();
+		var gglQuery = new google.visualization.Query(latestCommitsUrl + "/?branch=" + branchId);
+		gglQuery.send(drawCommitTable);
+		setTimeout(DASHBOARD.fceJIRALinks, 500);			
 	});
-	*/
 });	

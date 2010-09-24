@@ -6,7 +6,7 @@
 	<script type="text/javascript">
 		google.load('visualization', '1', {'packages':['corechart','table']});
 		google.setOnLoadCallback(initialize);
-
+		var latestCommitsUrl = "${createLink(action:'latest_commits')}";
 		function initialize() {
 			var query = new google.visualization.Query("${createLink(action:'monthly_commits')}");
 			query.send(drawBarChart);
@@ -14,7 +14,7 @@
 			var query2 = new google.visualization.Query("${createLink(action:'monthly_commits_by_branch')}");
 			query2.send(drawBranchChart);
 
-			var query3 = new google.visualization.Query("${createLink(action:'latest_commits')}");
+			var query3 = new google.visualization.Query(latestCommitsUrl);
 			query3.send(drawCommitTable);
 		}
 		function drawBarChart(response) {			
@@ -70,7 +70,15 @@
 </head>
 <body>
 	<div id="header">FCE Subversion Analytics</div>
-	<div id="commit_table_div" class="datatable"></div>
+	<div id="commits_wrapper" class="datatable">
+		<form>
+    		<g:select 
+    			optionKey="id" optionValue="name" name="branch.name" id="branchname" class="ui-state-active" style="padding : 3px;"
+    			from="${com.devjason.svnlog.domain.Branch.listOrderByDateCreated(order:'desc')}"/>                
+		</form>
+		<br/>
+		<div id="commit_table_div"></div>
+	</div>
 	<div id="chart_div" class="chart"></div>
 	<div id="branch_commits_div" class="chart"></div>
 </body>

@@ -1,5 +1,7 @@
 package com.devjason.paisley
 
+import com.devjason.svnlog.domain.Branch;
+
 import grails.converters.JSON
 import groovy.sql.Sql
 
@@ -7,7 +9,13 @@ class DashboardController {
 	//static layout = 'main'
 	def dataSource
 
-    def index = { }
+    def index = {
+	}
+	
+	def ajaxGetBranches = {
+		def branches = Branch.getAll();
+		render branches as JSON
+	}
 	
 	def monthly_commits = {
 		def map = [:]
@@ -107,9 +115,19 @@ class DashboardController {
 		def db = new Sql(dataSource)
 			
 		// Query for active branches
-		def results = db.rows(
-			"select revision_number, revision_time, author, message " +
+		def querySql = "select revision_number, revision_time, author, message " +
 			"from revision order by revision_time desc limit 0,10"
+			
+		if (params.branch && params.branch != '0') {			
+			querySql = "select revision.revision_number, revision.revision_time, revision.author, revision.message " +
+			"from revision, revision_entry, branch where revision.id = revision_entry.revision_id and " + 
+			"revision_entry.branch_id = branch.id and " +
+			"branch.id=${params.branch} " + 
+			"order by revision_time desc limit 0,10"
+		}
+		
+		def results = db.rows(
+			querySql
 		)
 		def columns = []
 		columns << [label: 'Number', type: 'number']
@@ -129,10 +147,17 @@ class DashboardController {
 		def table = [cols: columns, rows: rows]
 		
 		// Setup Google Response object
+		def gglRequestId = params.tqx;
+		gglRequestId = gglRequestId.substring(gglRequestId.indexOf(":")+1)
+		
 		def map = [:]
-		map.reqId = '2'
+		map.reqId = gglRequestId
 		map.status = 'ok'
 		map.table = table
+
+		if (params.branch) {
+			render map as JSON
+		}		
 		render "google.visualization.Query.setResponse(" + (map as JSON) + ")"
 	}	
 }
