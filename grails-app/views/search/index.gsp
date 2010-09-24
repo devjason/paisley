@@ -18,7 +18,7 @@
           			<div id="filterPane" ></div>
           			<div class="buttonBar">
             			<button type="button" id="addFilterButton">Add Filter</button>
-            			<button type="submit" id="applyFilterButton">Apply Filters</button>
+            			<button type="button" id="applyFilterButton">Apply Filters</button>
           			</div>
         	</fieldset>
         	<div id="resultsPane"><span class="none">No results displayed</span></div>

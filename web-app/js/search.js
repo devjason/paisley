@@ -27,6 +27,7 @@ $(function() {
 			.trigger('adjustName');
 		
 		$('option[value=""]',this).remove();
+		$('.dateValue').datepicker();
 	});
 	
 	$('button.filterRemover').live('click',function(){
@@ -53,9 +54,15 @@ $(function() {
 	
 	$('#addFilterButton').click();
 	
-	$('#filtersForm').submit(function(){
+	$('#applyFilterButton').click(function() {
 		//$('#resultsPane').load('applyFilters',$('#filtersForm').serializeArray());
-		
+		$('#filtersPane').slideUp('2000');
+		$('<div style="margin-bottom : 10px;"><button type="button" id="showCriteria">Show Search Criteria</button></div>').prependTo('#resultsPane');
+		$('#showCriteria').button();
+		$('#showCriteria').click(function() {
+			$('#filtersPane').slideDown('2000');
+			$(this).remove();
+		});
 		return false;
 	});
 });
