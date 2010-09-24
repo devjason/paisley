@@ -63,6 +63,14 @@ $(function() {
 			$('#filtersPane').slideDown('2000');
 			$(this).remove();
 		});
-		return false;
+		
+		//$.get( url, dataToSend, callback, typeOfDataToReceive )
+		$.get('/Paisley/search/search', $('#searchForm').serializeArray(), function(response) {
+			$(response).find('name').each(function() {
+				alert($(this).text());
+			});
+		}, 'xml');
+		
+		return true;
 	});
 });
