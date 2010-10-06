@@ -22,7 +22,7 @@ DASHBOARD.fceJIRALinks = function() {
 		// JIRA number is somewhere in the middle of the message but no link
 		$element = $(this);
 		$.each(['FCE-', 'WBG-', 'CP-', 'FCA-'], function(index, value) {
-			if (svnMessage.indexOf(value) != -1) {
+			if (svnMessage.toLowerCase().indexOf(value.toLowerCase()) != -1) {
 				DASHBOARD.addLink($element, svnMessage,value);
 			}
 		})		
