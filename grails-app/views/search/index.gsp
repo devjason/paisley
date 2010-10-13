@@ -21,9 +21,32 @@
             			<button type="button" id="applyFilterButton">Apply Filters</button>
           			</div>
         	</fieldset>
-        	<div id="resultsPane"><span class="none">No results displayed</span></div>
+        	<div id="resultsPane"><span class="none">No results displayed</span>
+        		<div id="resultsTableWrapper">
+					<table id="resultsTable" border="0">
+					  	<thead class="ui-widget-header ui-corner-all">
+					    	<tr>
+					      		<th width="10%">Rev #</th>
+					      		<th width="20%">Revision Time</th>
+					      		<th width="10%">Developer</th>
+					      		<th width="60%">Commit Message</th>
+					    	</tr>
+					  	</thead>				  
+					  	<tbody>
+					    	<tr class="hideOnSearch">
+							  <td class="ui-state-default">&nbsp;</td>
+							  <td class="ui-state-default">&nbsp;</td>
+							  <td class="ui-state-default">&nbsp;</td>
+							  <td class="ui-state-default">&nbsp;</td>				      
+							</tr>		    
+					  	</tbody>
+					</table>
+				</div>        		
+        	</div>
       	</form>
 	</div>
+	
+	<!-- hidden results table -->
 	
 	<!-- hidden templates -->
     <div id="templates">
@@ -33,15 +56,15 @@
 
         <select name="filter" class="filterChooser" title="Select a property to filter">
           <option value="" data-filter-type="" selected="selected">-- choose a filter --</option>
-          <option value="author" data-filter-type="stringMatch">Author</option>
-          <option value="branch" data-filter-type="stringMatch">Branch</option>
-          <option value="commitMessage" data-filter-type="stringMatch">Commit Message</option>
-          <option value="revisionNumber" data-filter-type="numberRange">Revision Number</option>
-          <option value="revisionDateTime" data-filter-type="dateRange">Revision Date</option>
-          <option value="artifact" data-filter-type="stringMatch">File Committed</option>
-          <option value="project" data-filter-type="stringMatch">Project</option>
+          <option value="revision.author" data-filter-type="stringMatch">Author</option>
+          <option value="branch.name" data-filter-type="stringMatch">Branch</option>
+          <option value="revision.message" data-filter-type="stringMatch">Commit Message</option>
+          <option value="revision.revision_number" data-filter-type="numberRange">Revision Number</option>
+          <option value="revision.revision_time" data-filter-type="dateRange">Revision Date</option>
+          <option value="revision_entry.artifact" data-filter-type="stringMatch">File Committed</option>
+          <option value="revision_entry.project" data-filter-type="stringMatch">Project</option>
         </select>
-      </div>
+      </div> 
 
       <div class="template stringMatch">
         	<select name="stringMatchType">
