@@ -73,3 +73,19 @@ legend {
 #resultsPane td:first-child {
 	text-align: left;
 }
+
+#ajaxInProgress .progress {
+	background: #fff url(../images/progress.gif) no-repeat center left;
+	height: 11px;
+	padding-top : 10px;
+}
+
+.progress {
+	background: #fff url(../images/progress.gif) no-repeat center left;
+	height: 11px;
+	padding-top : 10px;
+}
+
+.spinner {
+	background: #fff url(../images/spinner.gif) no-repeat center right;
+}

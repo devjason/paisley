@@ -11,7 +11,8 @@
 </head>
 <body>
 	<div id="pageContent" class="ui-corner-all">
-      	<h1 style="margin-bottom : 10px;">Justice Systems SVN Search Arena</h1>      
+      	<h1 style="margin-bottom : 10px;">Justice Systems SVN Search Arena</h1>
+      	      
       	<form id="searchForm" action="/Paisley/search/search" method="post">
         	<fieldset id="filtersPane" class="ui-corner-all">
           		<legend class="ui-widget-header ui-corner-all">Filters</legend>
@@ -21,6 +22,7 @@
             			<button type="button" id="applyFilterButton">Apply Filters</button>
           			</div>
         	</fieldset>
+        	<div id="ajaxInProgress"></div>	
         	<div id="resultsPane"><span class="none">No results displayed</span>
         		<div id="resultsTableWrapper">
 					<table id="resultsTable" border="0">

@@ -18,6 +18,12 @@ function addTableRow(jQtable){
 }
 
 $(function() {
+	//$('#ajaxInProgress').ajaxStart(function() {
+	//	$(this).addClass('progress');
+	//}).ajaxStop(function() {
+	//	$(this).removeClass('progress');
+	//});
+	
 	$('#resultsTableWrapper').hide();
 	
 	$('#addFilterButton').click(function(){
@@ -74,6 +80,7 @@ $(function() {
 	$('#addFilterButton').click();
 	
 	$('#applyFilterButton').click(function() {
+		$('#ajaxInProgress').addClass('progress');
 		var $table = $('#resultsTable');
 		$('.hideOnSearch', $table).hide();
 		$('.hideOnSearch', $table).siblings().remove();
@@ -86,7 +93,7 @@ $(function() {
 			$(this).remove();
 		});
 		
-		$.get('/Paisley/search/search', $('#searchForm').serializeArray(), function(response) {
+		$.get('/Paisley/search/search', $('#searchForm').serializeArray(), function(response) {			
 			$('#resultsTableWrapper').show();
 			if ($(response).find('revision').size() > 0) {
 				$('#resultsPane span.none').remove();
@@ -115,6 +122,7 @@ $(function() {
 				$('#resultsTableWrapper').hide();
 				$('<span class="none">No results displayed</span>').appendTo('#resultsPane').hide().fadeIn('slow');
 			}
+			$('#ajaxInProgress').removeClass('progress');
 		}, 'xml');
 		
 		return true;
