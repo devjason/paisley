@@ -11,7 +11,7 @@ class SearchController {
 	}
 	
 	def search = {
-		def select = "select distinct revision.id "
+		def select = "select distinct revision.id, revision.revision_time "
 		def where = []
 		def tables = ['revision']
 		
@@ -45,7 +45,7 @@ class SearchController {
 		def joinTables = extrapolateJoin(tables)
 		def from = extrapolateFromClause(joinTables[1].unique())
 		def and = (joinTables[1].size() > 1) ? ' and ' : ''
-		def sql = select + from + " where " + joinTables[0] + and + where.join(' and ') 
+		def sql = select + from + " where " + joinTables[0] + and + where.join(' and ') + " order by revision.revision_time desc"
 		//println sql
 		
 		def db = new Sql(dataSource)
