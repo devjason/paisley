@@ -119,7 +119,7 @@ class DashboardController {
 			"from revision order by revision_time desc limit 0,10"
 			
 		if (params.branch && params.branch != '0') {			
-			querySql = "select revision.revision_number, revision.revision_time, revision.author, revision.message " +
+			querySql = "select distinct(revision.revision_number), revision.revision_time, revision.author, revision.message " +
 			"from revision, revision_entry, branch where revision.id = revision_entry.revision_id and " + 
 			"revision_entry.branch_id = branch.id and " +
 			"branch.id=${params.branch} " + 
